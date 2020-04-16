@@ -6,9 +6,6 @@
 //
 
 #import "ZQRowLayoutInfoView.h"
-#import <YogaKit/UIView+Yoga.h>
-#import "UIFont+AdjustFont.h"
-#import <ReactiveObjC/ReactiveObjC.h>
 
 @interface ZQRowLayoutInfoView ()
 
@@ -129,12 +126,10 @@
 
 - (void)setNameSuffixView:(UIView *)nameSuffixView{
     _nameSuffixView = nameSuffixView;
-    
     if (nameSuffixView) {
         [_nameRowView addSubview:nameSuffixView];
         [self.yoga applyLayoutPreservingOrigin:YES];
     }
-    
 }
 
 - (void)setInfoSuffixView:(UIView *)infoSuffixView{
@@ -143,6 +138,15 @@
         [_infoRowView addSubview:infoSuffixView];
         [self.yoga applyLayoutPreservingOrigin:YES];
     }
+}
+
+- (void)setImageViewHeight:(CGFloat)imageViewHeight{
+    _imageViewHeight = imageViewHeight;
+    
+    [self.imageView configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+        layout.isEnabled = YES;
+        layout.width = layout.height = YGPointValue(imageViewHeight);
+    }];
 }
 
 

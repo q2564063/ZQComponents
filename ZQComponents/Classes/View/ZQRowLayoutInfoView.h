@@ -16,8 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UILabel *nameLabel;
 @property (nonatomic, weak) UILabel *infoLabel;
 
+//nameLabel的后缀，可自定义view
 @property (nonatomic, weak) UIView *nameSuffixView;
+//infoLabel的后缀，可自定义view
 @property (nonatomic, weak) UIView *infoSuffixView;
+
+//imageView的高，imageView宽高总保持一致
+@property (nonatomic, assign) CGFloat imageViewHeight;
 
 @end
 

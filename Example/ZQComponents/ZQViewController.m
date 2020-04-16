@@ -8,7 +8,8 @@
 
 #import "ZQViewController.h"
 #import "UIView+Yoga.h"
-#import <ZQComponents/ZQRowLayoutInfoView.h>
+#import <ZQComponents/ZQComponents.h>
+
 
 @interface ZQViewController ()
 
@@ -29,7 +30,6 @@
         layout.flexDirection = YGFlexDirectionColumn;
         layout.alignItems = YGAlignCenter;
         layout.paddingTop = YGPointValue(100);
-//        layout.alignItems = YGAlignCenter;
     }];
     [self.view addSubview:containerView];
     
@@ -40,6 +40,7 @@
             layout.isEnabled = YES;
             layout.alignSelf = YGAlignFlexStart;
             layout.marginBottom = YGPointValue(12);
+            layout.marginTop = YGPointValue(20);
         }];
         [containerView addSubview:label];
 
@@ -72,6 +73,118 @@
             //模拟name为空
             [tView.nameLabel setText:@""];
         });
+    }
+    
+    {
+        UILabel *label = [UILabel new];
+        label.text = @"日期选择器：";
+        [label configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+            layout.isEnabled = YES;
+            layout.alignSelf = YGAlignFlexStart;
+            layout.marginBottom = YGPointValue(12);
+            layout.marginTop = YGPointValue(20);
+        }];
+        [containerView addSubview:label];
+
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        [button setTitle:@"打开日期选择器" forState:UIControlStateNormal];
+        [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            ZQDatePicker *picker = [ZQDatePicker new];
+            picker.selectedRes = ^(NSString * _Nonnull dateStr) {
+                [button setTitle:dateStr forState:UIControlStateNormal];
+            };
+            [picker show:self.view];
+        }];
+        [button configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+            layout.isEnabled = YES;
+        }];
+        [containerView addSubview:button];
+        
+    }
+    
+    {
+        UILabel *label = [UILabel new];
+        label.text = @"月份选择器：";
+        [label configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+            layout.isEnabled = YES;
+            layout.alignSelf = YGAlignFlexStart;
+            layout.marginBottom = YGPointValue(12);
+            layout.marginTop = YGPointValue(20);
+        }];
+        [containerView addSubview:label];
+
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        [button setTitle:@"打开月份选择器" forState:UIControlStateNormal];
+        [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            ZQMonthPicker *picker = [ZQMonthPicker new];
+            picker.selectedRes = ^(NSString * _Nonnull dateStr) {
+                [button setTitle:dateStr forState:UIControlStateNormal];
+            };
+            [picker show:self.view];
+        }];
+        [button configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+            layout.isEnabled = YES;
+        }];
+        [containerView addSubview:button];
+        
+    }
+    
+    {
+        UILabel *label = [UILabel new];
+        label.text = @"年份选择器：";
+        [label configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+            layout.isEnabled = YES;
+            layout.alignSelf = YGAlignFlexStart;
+            layout.marginBottom = YGPointValue(12);
+            layout.marginTop = YGPointValue(20);
+        }];
+        [containerView addSubview:label];
+
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        [button setTitle:@"打开年份选择器" forState:UIControlStateNormal];
+        [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            ZQYearPicker *picker = [ZQYearPicker new];
+            picker.selectedRes = ^(NSString * _Nonnull dateStr) {
+                [button setTitle:dateStr forState:UIControlStateNormal];
+            };
+            [picker show:self.view];
+        }];
+        [button configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+            layout.isEnabled = YES;
+        }];
+        [containerView addSubview:button];
+        
+    }
+    
+    
+    {
+        UILabel *label = [UILabel new];
+        label.text = @"自定义选择器：";
+        [label configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+            layout.isEnabled = YES;
+            layout.alignSelf = YGAlignFlexStart;
+            layout.marginBottom = YGPointValue(12);
+            layout.marginTop = YGPointValue(20);
+        }];
+        [containerView addSubview:label];
+
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        [button setTitle:@"打开自定义选择器" forState:UIControlStateNormal];
+        [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            NSArray *datasource = @[@"自定义1", @"自定义2", @"自定义3", ];
+            ZQPickerView *picker = [ZQPickerView new];
+            picker.defaultIndex = 1;
+            picker.dataSource = datasource;
+            picker.selectedRes = ^(NSInteger index) {
+                [button setTitle:datasource[index] forState:UIControlStateNormal];
+            };
+            [picker show:self.view];
+        }];
+        [button configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+            layout.isEnabled = YES;
+        }];
+        [containerView addSubview:button];
+        
     }
     
     
