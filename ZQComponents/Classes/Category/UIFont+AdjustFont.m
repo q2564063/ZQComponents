@@ -6,6 +6,7 @@
 //
 
 #import "UIFont+AdjustFont.h"
+#import "ZQDefines.h"
 
 @implementation UIFont (AdjustFont)
 
