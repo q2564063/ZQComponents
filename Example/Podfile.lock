@@ -1,0 +1,33 @@
+PODS:
+  - ReactiveObjC (3.1.1)
+  - Yoga (1.14.0)
+  - YogaKit (1.18.1):
+    - Yoga (~> 1.14)
+  - ZQComponents (0.1.0):
+    - ReactiveObjC
+    - YogaKit
+
+DEPENDENCIES:
+  - ReactiveObjC
+  - YogaKit (~> 1.7)
+  - ZQComponents (from `../`)
+
+SPEC REPOS:
+  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+    - ReactiveObjC
+    - Yoga
+    - YogaKit
+
+EXTERNAL SOURCES:
+  ZQComponents:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+  Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
+  YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
+  ZQComponents: c108eb08617c285e8df68770c19b49ca43ccf6b0
+
+PODFILE CHECKSUM: 0927e5fb8551ce56602f376a1fa66c9771914278
+
+COCOAPODS: 1.8.4
