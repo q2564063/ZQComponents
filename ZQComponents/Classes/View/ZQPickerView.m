@@ -10,6 +10,8 @@
 #import <YogaKit/UIView+Yoga.h>
 #import "ZQDefines.h"
 
+#define PICKER_HEIGHT ZQ_FIT(250)
+
 @interface ZQPickerView ()<UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic, strong) UIPickerView *picker;
@@ -60,7 +62,7 @@
     [view configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
         layout.isEnabled = YES;
         layout.width = YGPointValue(ZQ_SCREEN_WIDTH);
-        layout.height = YGPointValue(300);
+        layout.height = YGPointValue(PICKER_HEIGHT);
         layout.flexDirection = YGFlexDirectionColumn;
     }];
     [self addSubview:view];
@@ -72,19 +74,20 @@
         layout.width = YGPointValue(ZQ_SCREEN_WIDTH);
         layout.flexDirection = YGFlexDirectionRow;
         layout.alignItems = YGAlignCenter;
-        layout.paddingHorizontal = YGPointValue(12);
-        layout.paddingVertical = YGPointValue(8);
+        layout.paddingHorizontal = YGPointValue(ZQ_FIT(12));
+        layout.paddingVertical = YGPointValue(ZQ_FIT(8));
     }];
     [view addSubview:headerView];
     
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
     cancelButton.tintColor = [UIColor redColor];
+    cancelButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [cancelButton addTarget:self action:@selector(handleCancelAction:) forControlEvents:UIControlEventTouchUpInside];
     [cancelButton configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
         layout.isEnabled = YES;
-        layout.width = YGPointValue(60);
-        layout.height = YGPointValue(44);
+        layout.width = YGPointValue(ZQ_FIT(60));
+        layout.height = YGPointValue(ZQ_FIT(44));
     }];
     [headerView addSubview:cancelButton];
     
@@ -98,14 +101,16 @@
         layout.flex = 1;
     }];
     [headerView addSubview:label];
+
     
     UIButton *confirmButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [confirmButton setTitle:@"确认" forState:UIControlStateNormal];
+    confirmButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [confirmButton addTarget:self action:@selector(handleConfirmAction:) forControlEvents:UIControlEventTouchUpInside];
     [confirmButton configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
         layout.isEnabled = YES;
-        layout.width = YGPointValue(60);
-        layout.height = YGPointValue(44);
+        layout.width = YGPointValue(ZQ_FIT(60));
+        layout.height = YGPointValue(ZQ_FIT(44));
     }];
     [headerView addSubview:confirmButton];
     
@@ -159,7 +164,7 @@
     [_picker reloadAllComponents];
     self.alpha = 0;
     [UIView animateWithDuration:0.25 animations:^{
-        self.picker.superview.transform = CGAffineTransformMakeTranslation(0, -300);
+        self.picker.superview.transform = CGAffineTransformMakeTranslation(0, -PICKER_HEIGHT);
         self.alpha = 1;
     }];
     
@@ -168,7 +173,7 @@
 
 - (void)hide{
     [UIView animateWithDuration:0.25 animations:^{
-        self.picker.superview.transform = CGAffineTransformMakeTranslation(0, 300);
+        self.picker.superview.transform = CGAffineTransformMakeTranslation(0, PICKER_HEIGHT);
         self.alpha = 0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];

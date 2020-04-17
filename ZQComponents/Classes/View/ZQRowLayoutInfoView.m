@@ -47,9 +47,9 @@
     imageView.backgroundColor = [UIColor redColor];
     [imageView configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
         layout.isEnabled = YES;
-        layout.height = YGPointValue(50);
-        layout.width = YGPointValue(50);
-        layout.marginRight = YGPointValue(8);
+        layout.height = YGPointValue(ZQ_FIT(50));
+        layout.width = YGPointValue(ZQ_FIT(50));
+        layout.marginRight = YGPointValue(ZQ_FIT(8));
     }];
     [self addSubview: imageView];
     

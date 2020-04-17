@@ -11,4 +11,6 @@
 #define ZQ_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define ZQ_SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
+#define ZQ_FIT(val) (val * [UIScreen mainScreen].bounds.size.width / 375)
+
 #endif /* ZQDefines_h */

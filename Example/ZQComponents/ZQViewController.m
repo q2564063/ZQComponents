@@ -9,7 +9,7 @@
 #import "ZQViewController.h"
 #import "UIView+Yoga.h"
 #import <ZQComponents/ZQComponents.h>
-
+#import "ZQFormViewController.h"
 
 @interface ZQViewController ()
 
@@ -179,6 +179,29 @@
                 [button setTitle:datasource[index] forState:UIControlStateNormal];
             };
             [picker show:self.view];
+        }];
+        [button configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+            layout.isEnabled = YES;
+        }];
+        [containerView addSubview:button];
+        
+    }
+    
+    {
+        UILabel *label = [UILabel new];
+        label.text = @"打开表单：";
+        [label configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
+            layout.isEnabled = YES;
+            layout.alignSelf = YGAlignFlexStart;
+            layout.marginBottom = YGPointValue(12);
+            layout.marginTop = YGPointValue(20);
+        }];
+        [containerView addSubview:label];
+
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        [button setTitle:@"打开表单" forState:UIControlStateNormal];
+        [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            [self presentViewController:[ZQFormViewController new] animated:YES completion:nil];
         }];
         [button configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
             layout.isEnabled = YES;
